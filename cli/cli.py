@@ -9,14 +9,17 @@ load_dotenv()
 
 async def main():
     load_agents()
-    # thread_id = inquirer.text("Thread ID (new or existing)")
+    # thread_id = await inquirer.text("Thread ID (new or existing)")
 
     while True:
-        user_input = inquirer.text("You:")
+        user_input = await inquirer.text("You:")
         if user_input.lower() in ["exit", "quit"]:
             break
-        response = await run_with_langgraph(user_input)
-        print(f"Christopher: {response}")
+        try:
+            response = await run_with_langgraph(user_input)
+            print(f"Christopher: {response}")
+        except Exception as e:
+            print(f"Error: {e}")
 
 
 if __name__ == "__main__":

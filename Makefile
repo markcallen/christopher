@@ -12,6 +12,9 @@ install: .venv
 	$(PIP) install -r requirements.txt
 	$(PIP) install -r dev-requirements.txt
 
+develop: install
+	$(PIP) install -e .
+
 clean-venv:
 	@if [ -d .venv ]; then \
 		rm -rf .venv; \
