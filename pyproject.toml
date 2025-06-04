@@ -42,6 +42,8 @@ select = [
 ]
 ignore = [
     # Add rules to ignore here, e.g., "E501" for line length if not using line-length
+    "D203",
+    "D213"
 ]
 
 [tool.ruff.format]
