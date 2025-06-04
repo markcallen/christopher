@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "christopher"
+version = "0.1.0"
+description = "Christopher - An AI agent framework"
+authors = [
+    {name = "Christopher Team"}
+]
+requires-python = ">=3.9"
+dependencies = [
+    "inquirer",
+    "python-dotenv",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "."
+]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+
+[tool.setuptools]
+packages = ["cli", "core", "llm", "agents", "api"] 
