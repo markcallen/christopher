@@ -23,6 +23,9 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 asyncio_mode = "auto"
 
+# Updated coverage configuration
+addopts = "--cov=cli --cov=core --cov=llm --cov=agents --cov=api --cov-report=term-missing --cov-report=html"
+
 [tool.setuptools]
 packages = ["cli", "core", "llm", "agents", "api"] 
 
@@ -50,3 +53,25 @@ ignore = [
 quote-style = "double" # Or "single"
 indent-style = "space"
 line-ending = "auto"
+
+[tool.coverage.run]
+source = ["cli", "core", "llm", "agents", "api"]
+branch = true
+omit = [
+    "tests/*",
+    "setup.py",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "pass",
+    "@abstractmethod",
+]
+show_missing = true
+fail_under = 80
