@@ -3,8 +3,10 @@ PIP = .venv/bin/pip
 
 # Create virtual environment if not exists
 .venv:
-	python3 -m venv .venv
-	$(PIP) install --upgrade pip
+	@if [ ! -d .venv ]; then \
+		python3 -m venv .venv; \
+		$(PIP) install --upgrade pip; \
+	fi
 
 install: .venv
 	$(PIP) install -r requirements.txt
@@ -19,13 +21,13 @@ format:
 	.venv/bin/black .
 	.venv/bin/ruff check . --fix
 
-lint:
+lint: .venv
 	.venv/bin/ruff check .
 
-test:
+test: .venv
 	.venv/bin/pytest tests/
 
-coverage:
+coverage: .venv
 	.venv/bin/pytest --cov=christopher tests/
 
 clean:
@@ -38,6 +40,6 @@ docker-build:
 docker-run:
 	docker compose up --build
 
-precommit-install:
+precommit-install: .venv
 	.venv/bin/pre-commit install
 
