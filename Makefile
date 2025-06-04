@@ -36,7 +36,7 @@ test:
 	@:
 
 coverage:
-	.venv/bin/pytest --cov=christopher tests/
+	.venv/bin/pytest --cov-report xml:coverage.xml
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -r {} +
