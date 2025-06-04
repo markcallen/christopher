@@ -9,7 +9,7 @@ load_dotenv()
 
 async def main():
     load_agents()
-    thread_id = inquirer.text("Thread ID (new or existing)")
+    # thread_id = inquirer.text("Thread ID (new or existing)")
 
     while True:
         user_input = inquirer.text("You:")
