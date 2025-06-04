@@ -1,0 +1,102 @@
+---
+description: Guidelines for implementing agents using the @agent decorator
+globs: 
+alwaysApply: false
+---
+---
+description: Guidelines for implementing agents using the @agent decorator
+globs: agents/**/*.py
+alwaysApply: false
+---
+# Agent Decorator Usage Guidelines
+
+This rule defines the standard way to implement agents using the `@agent` decorator in our project.
+
+## Basic Structure
+
+Every agent must follow this structure:
+
+```python
+from core.registry import agent
+
+@agent("agent-name")
+class AgentName:
+    id = "agent-name"  # Must match the decorator parameter
+    description = "A clear description of what the agent does"
+
+    async def run(self, input_text: str, context: dict) -> str:
+        # Implementation
+        return "Agent response"
+```
+
+## Required Components
+
+1. **Decorator Usage**
+   - Always import the decorator from `core.registry`
+   - The decorator parameter must be a string matching the agent's purpose
+   - Use kebab-case for the agent name in the decorator
+
+2. **Class Structure**
+   - Class name should be in PascalCase
+   - Must inherit from no base class (agents are standalone)
+   - Must implement the `run` method with the exact signature shown above
+
+3. **Required Attributes**
+   - `id`: Must be a string matching the decorator parameter
+   - `description`: A clear, single-line description of the agent's purpose
+   - Both attributes must be class-level attributes (not instance attributes)
+
+4. **Method Requirements**
+   - The `run` method must be async
+   - Must accept exactly two parameters: `input_text` (str) and `context` (dict)
+   - Must return a string
+
+## Examples
+### Good Example
+```python
+from core.registry import agent
+
+@agent("weather")
+class WeatherAgent:
+    id = "weather"
+    description = "A weather agent that provides current weather information and forecasts"
+
+    async def run(self, input_text: str, context: dict) -> str:
+        return "The weather today is sunny with a high of 25°C."
+```
+
+### Bad Examples
+
+```python
+# Bad: Missing required attributes
+@agent("weather")
+class WeatherAgent:
+    async def run(self, input_text: str, context: dict) -> str:
+        return "Weather info"
+
+# Bad: Wrong method signature
+@agent("weather")
+class WeatherAgent:
+    id = "weather"
+    description = "Weather agent"
+    
+    def run(self, text: str):  # Missing async, wrong parameters
+        return "Weather info"
+
+# Bad: Mismatched decorator and id
+@agent("weather-service")
+class WeatherAgent:
+    id = "weather"  # Doesn't match decorator parameter
+    description = "Weather agent"
+    
+    async def run(self, input_text: str, context: dict) -> str:
+        return "Weather info"
+```
+
+## Best Practices
+
+1. Keep agent descriptions clear and concise
+2. Use meaningful agent names that reflect their purpose
+3. Ensure the `run` method handles errors gracefully
+4. Keep agent implementations focused on a single responsibility
+5. Document any special context requirements in the agent's description
