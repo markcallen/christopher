@@ -1,0 +1,174 @@
+---
+description: Guidelines for following Ruff linting and formatting specifications in our Python codebase
+globs: 
+alwaysApply: false
+---
+---
+description: Guidelines for following Ruff linting and formatting specifications in our Python codebase
+globs: "**/*.py"
+alwaysApply: true
+---
+# Ruff Code Style Guidelines
+
+This rule defines the Ruff linting and formatting specifications for our Python codebase. Ruff is our primary Python linter and formatter, configured to maintain consistent code style and catch potential issues early.
+
+## Configuration Overview
+
+Our Ruff configuration targets Python 3.10+ and enforces the following key settings:
+
+- Line length: 88 characters
+- Quote style: Double quotes
+- Indent style: Spaces
+- Line endings: Auto-detected
+
+## Enabled Linting Rules
+
+We use the following Ruff rule sets:
+
+- `E` (pycodestyle errors): Basic Python style errors
+- `F` (Pyflakes): Logical errors and undefined names
+- `W` (pycodestyle warnings): Style warnings
+- `I` (isort): Import sorting and organization
+- `N` (pep8-naming): Naming convention checks
+- `D` (pydocstyle): Docstring style and completeness
+- `UP` (pyupgrade): Python 3.10+ specific upgrades
+
+## Code Style Guidelines
+
+1. **Line Length**
+   - Maximum line length is 88 characters
+   - Break long lines at logical points
+   - Use parentheses for line continuation
+
+2. **Quotes**
+   - Use double quotes (`"`) for strings
+   - Use single quotes (`'`) only when the string contains double quotes
+
+3. **Indentation**
+   - Use spaces for indentation (not tabs)
+   - Follow standard Python indentation rules
+
+4. **Imports**
+   - Imports should be sorted automatically by isort
+   - Group imports in the following order:
+     1. Standard library imports
+     2. Third-party imports
+     3. Local application imports
+
+5. **Naming Conventions**
+   - Follow PEP 8 naming conventions
+   - Use `snake_case` for functions and variables
+   - Use `CamelCase` for classes
+   - Use `UPPER_CASE` for constants
+
+6. **Docstrings**
+   - Include docstrings for all public modules, functions, classes, and methods
+   - Follow Google-style docstring format
+
+## Usage
+
+1. **Installation**
+   ```bash
+   pip install ruff
+   ```
+
+2. **Running Ruff**
+   ```bash
+   # Check for issues
+   ruff check .
+   
+   # Auto-fix issues
+   ruff check --fix .
+   
+   # Format code
+   ruff format .
+   ```
+
+3. **IDE Integration**
+   - Configure your IDE to use Ruff
+   - Enable format-on-save with Ruff
+   - Install Ruff extension for your IDE
+## Examples
+
+```python
+# Good Examples
+
+# Proper import ordering
+from typing import List, Optional
+import os
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+
+from core.agent import Agent
+
+
+# Proper function definition with docstring
+def process_data(data: List[str], max_items: Optional[int] = None) -> List[str]:
+    """Process a list of data items with optional maximum limit.
+    
+    Args:
+        data: List of strings to process
+        max_items: Optional maximum number of items to process
+        
+    Returns:
+        Processed list of strings
+    """
+    if max_items is not None:
+        data = data[:max_items]
+    return [item.strip() for item in data]
+
+
+# Proper class definition
+class DataProcessor:
+    """Handles data processing operations."""
+    
+    def __init__(self, config: dict) -> None:
+        """Initialize the data processor.
+        
+        Args:
+            config: Configuration dictionary
+        """
+        self.config = config
+
+
+# Bad Examples
+
+# Wrong import order and style
+from core.agent import Agent
+import os
+from typing import List  # Should be at the top
+
+# Missing type hints and docstring
+def process_data(data, max_items=None):  # Missing type hints
+    if max_items:
+        data = data[:max_items]
+    return [x.strip() for x in data]  # Unclear variable name
+
+# Wrong naming convention
+class data_processor:  # Should be CamelCase
+    def __init__(self, Config):  # Parameter should be lowercase
+        self.Config = Config  # Attribute should be lowercase
+```
+
+## Best Practices
+
+1. **Before Committing**
+   - Run `ruff check .` to verify code style
+   - Run `ruff format .` to format code
+   - Fix any remaining issues manually
+
+2. **Continuous Integration**
+   - Ruff checks are part of our CI pipeline
+   - PRs must pass all Ruff checks before merging
+
+3. **Code Review**
+   - Reviewers should check for Ruff compliance
+   - Use Ruff's auto-fix capabilities when possible
+   - Document any necessary rule exceptions
+
+4. **Maintenance**
+   - Keep Ruff and its dependencies up to date
+   - Review and update rules periodically
+   - Document any changes to the configuration
