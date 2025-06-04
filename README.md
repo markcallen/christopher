@@ -137,18 +137,6 @@ The system uses:
 
 These should be set in a `.env` file or passed into the environment.
 
-## Devpod
-
-make sure that the .venv directory isn't there
-```
-make clean-venv
-```
-
-Then run:
-
-```
-devpod up --id chris-dev --provider kubernetes --ide cursor .
-```
 ---
 
 ## Kubernetes
@@ -156,7 +144,7 @@ devpod up --id chris-dev --provider kubernetes --ide cursor .
 ```
 helm repo add otwld https://helm.otwld.com/
 helm repo update
-helm install ollama otwld/ollama --namespace ollama --create-namespace --values values.yaml
+helm upgrade --install ollama otwld/ollama --namespace ollama --create-namespace --values values.yaml
 ```
 
 ```
