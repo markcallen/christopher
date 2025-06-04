@@ -21,13 +21,13 @@ format:
 	.venv/bin/black .
 	.venv/bin/ruff check . --fix
 
-lint: .venv
+lint:
 	.venv/bin/ruff check .
 
-test: .venv
+test:
 	.venv/bin/pytest tests/
 
-coverage: .venv
+coverage:
 	.venv/bin/pytest --cov=christopher tests/
 
 clean:
@@ -40,6 +40,6 @@ docker-build:
 docker-run:
 	docker compose up --build
 
-precommit-install: .venv
+precommit-install:
 	.venv/bin/pre-commit install
 
