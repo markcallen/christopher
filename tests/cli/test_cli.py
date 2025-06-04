@@ -4,7 +4,7 @@ This module contains tests for the command-line interface functionality,
 including conversation flows, exit commands, and error handling.
 """
 
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, Mock, patch
 
 import pytest
 
@@ -21,7 +21,7 @@ def mock_inquirer():
 
     """
     with patch("cli.cli.inquirer") as mock:
-        mock.text = AsyncMock()
+        mock.text = Mock()
         yield mock
 
 

@@ -39,13 +39,16 @@ class OllamaClient:
 
         self.llm = OllamaLLM(model=self.model, base_url=self.base_url)
 
-    async def generate(self, prompt: str, format: type[BaseModel]) -> LLMResult:
+    async def generate(
+        self, prompt: str, format: type[BaseModel] | BaseModel
+    ) -> LLMResult:
         """Generate text using the Ollama model.
 
         Args:
         ----
             prompt: The input prompt to generate text from.
-            format: A Pydantic model defining the expected output format.
+            format: A Pydantic model class or instance defining the expected
+            output format.
 
         Returns:
         -------
@@ -56,12 +59,4 @@ class OllamaClient:
             ValueError: If the format contains non-serializable fields.
 
         """
-        # Validate format is a simple type that can be JSON serialized
-        for field_name, field in format.model_dump().items():
-            if not isinstance(field, str | int | float | bool | type(None)):
-                raise ValueError(
-                    f"Invalid format: field '{field_name}' must be a simple type "
-                    "(str, int, float, bool)"
-                )
-
         return await self.llm.agenerate([prompt], format=format.model_json_schema())

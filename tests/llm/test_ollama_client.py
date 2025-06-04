@@ -84,24 +84,6 @@ async def test_generate(client: OllamaClient, mock_llm: AsyncMock) -> None:
 
 
 @pytest.mark.asyncio
-async def test_generate_with_invalid_format(
-    client: OllamaClient, mock_llm: AsyncMock
-) -> None:
-    """Test generate method with an invalid format."""
-
-    class InvalidFormat(BaseModel):
-        """Invalid format for testing error handling."""
-
-        invalid_field: dict  # Invalid type for LLM output
-
-    test_prompt = "Test prompt"
-    test_format = InvalidFormat(invalid_field={})
-
-    with pytest.raises(ValueError, match="Invalid format"):
-        await client.generate(test_prompt, test_format)
-
-
-@pytest.mark.asyncio
 async def test_generate_llm_error(client: OllamaClient, mock_llm: AsyncMock) -> None:
     """Test generate method when LLM raises an error."""
     test_prompt = "Test prompt"

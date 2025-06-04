@@ -137,8 +137,15 @@ async def agent_node(state: ChatStateDict) -> dict[str, str]:
         agent_id = "default"
     agent_data = AGENT_REGISTRY[agent_id]
     agent = agent_data["instance"]
-    response = await agent.run(state["input_text"], {})
-    return {"response": response}
+    try:
+        response = await agent.run(state["input_text"], {})
+        # Ensure response is a string
+        if not isinstance(response, str):
+            response = str(response)
+        return {"response": response}
+    except Exception as e:
+        logger.error(f"Error in agent {agent_id}: {e}")
+        return {"response": f"Error: {str(e)}"}
 
 
 def create_graph() -> Any:

@@ -1,3 +1,5 @@
+"""CLI for Christopher."""
+
 import asyncio
 
 import inquirer
@@ -10,11 +12,14 @@ load_dotenv()
 
 
 async def main():
+    """Run the main CLI loop."""
     load_agents()
     # thread_id = await inquirer.text("Thread ID (new or existing)")
 
     while True:
-        user_input = await inquirer.text("You:")
+        user_input = inquirer.text(
+            "You:"
+        )  # Remove await since inquirer.text is not async
         if user_input.lower() in ["exit", "quit"]:
             break
         try:
