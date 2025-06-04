@@ -1,15 +1,21 @@
 {
   "name": "Christopher Dev",
   "service": "christopher",
-  "dockerFile": "../Dockerfile",
+  "dockerComposeFile": "../docker-compose.yml",
   "workspaceFolder": "/app",
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
   },
-  "extensions": [
-    "ms-python.python",
-    "ms-azuretools.vscode-docker",
-    "ghcr.io/devcontainers/features/git:1"
-  ],
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
   "postCreateCommand": "make install && make precommit-install"
 }

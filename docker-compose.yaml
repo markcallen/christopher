@@ -1,9 +1,8 @@
 services:
-  app:
+  christopher:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: christopher
     volumes:
       - .:/app
     working_dir: /app
