@@ -1,7 +1,9 @@
-import inquirer
 import asyncio
-from core.christopher import load_agents, run_with_langgraph
+
+import inquirer
 from dotenv import load_dotenv
+
+from core.christopher import load_agents, run_with_langgraph
 
 # Load environment variables from .env file
 load_dotenv()

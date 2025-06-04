@@ -1,7 +1,8 @@
-import os
 import importlib.util
+import os
+
+from core.langgraph_runner import ChatState, create_graph
 from core.registry import AGENT_REGISTRY
-from core.langgraph_runner import create_graph, ChatState
 
 
 def load_agents():

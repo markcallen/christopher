@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+
+from conversations.thread_store import get_thread, list_threads
 from core.christopher import load_agents, run_with_langgraph
-from conversations.thread_store import list_threads, get_thread
 
 app = FastAPI()
 load_agents()

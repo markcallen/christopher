@@ -1,5 +1,6 @@
-from core.registry import agent
 from langchain_openai.chat_models.base import ChatOpenAI
+
+from core.registry import agent
 
 
 @agent("writing")

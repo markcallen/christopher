@@ -1,5 +1,6 @@
-from core.registry import agent
 from langchain_anthropic.chat_models import ChatAnthropic
+
+from core.registry import agent
 
 
 @agent("programming")

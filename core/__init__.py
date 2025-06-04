@@ -1,3 +1,2 @@
-"""
-Core package for Christopher.
+"""Core package for Christopher.
 """
