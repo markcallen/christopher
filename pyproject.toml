@@ -9,7 +9,7 @@ description = "Christopher - An AI agent framework"
 authors = [
     {name = "Christopher Team"}
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "inquirer",
     "python-dotenv",
@@ -25,3 +25,26 @@ asyncio_mode = "auto"
 
 [tool.setuptools]
 packages = ["cli", "core", "llm", "agents", "api"] 
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88 # Or your preferred line length
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "F",  # Pyflakes
+    "W",  # pycodestyle warnings
+    "I",  # isort
+    "N",  # pep8-naming
+    "D",  # pydocstyle (optional, if you want docstring checks)
+    "UP", # pyupgrade (for Python 3.10 specific upgrades)
+]
+ignore = [
+    # Add rules to ignore here, e.g., "E501" for line length if not using line-length
+]
+
+[tool.ruff.format]
+quote-style = "double" # Or "single"
+indent-style = "space"
+line-ending = "auto"
