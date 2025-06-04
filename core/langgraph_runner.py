@@ -92,6 +92,9 @@ async def entry_node(state: ChatStateDict) -> dict[str, str]:
 Available agents:
 {agent_descriptions}
 
+Only return the id value of the agent that best matches the request.
+Do not include any other text in your response.
+
 Input: {state['input_text']}"""
 
     response = await ollama.generate(prompt=prompt, format=AgentResponseFormatter)

@@ -27,7 +27,7 @@ asyncio_mode = "auto"
 addopts = "--cov=cli --cov=core --cov=llm --cov=agents --cov=api --cov-report=term-missing --cov-report=html"
 
 [tool.setuptools]
-packages = ["cli", "core", "llm", "agents", "api"] 
+packages = ["cli", "core", "llm", "agents", "api"]
 
 [tool.ruff]
 target-version = "py310"
@@ -42,6 +42,7 @@ select = [
     "N",  # pep8-naming
     "D",  # pydocstyle (optional, if you want docstring checks)
     "UP", # pyupgrade (for Python 3.10 specific upgrades)
+    "T20", # warn about print statements
 ]
 ignore = [
     # Add rules to ignore here, e.g., "E501" for line length if not using line-length
