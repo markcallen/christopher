@@ -62,12 +62,6 @@ coverage.xml
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# VS Code
-.vscode/
-
-# PyCharm
-.idea/
-
 # macOS / Linux
 .DS_Store
 Thumbs.db
@@ -75,4 +69,3 @@ Thumbs.db
 # Docker
 **/__docker_cache__/
 docker-compose.override.yml
-
