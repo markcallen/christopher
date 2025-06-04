@@ -1,3 +1,5 @@
+.PHONY: install develop clean-venv format lint test coverage clean docker-build docker-run precommit-install
+
 PYTHON = .venv/bin/python
 PIP = .venv/bin/pip
 
@@ -28,7 +30,10 @@ lint:
 	.venv/bin/ruff check .
 
 test:
-	.venv/bin/pytest tests/
+	.venv/bin/pytest $(filter-out $@,$(MAKECMDGOALS))
+
+%:
+	@:
 
 coverage:
 	.venv/bin/pytest --cov=christopher tests/
