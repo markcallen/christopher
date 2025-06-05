@@ -3,11 +3,3 @@ ollama:
     pull:
       - llama3
       - deepseek-r1:1.5b
-
-ingress:
-  enabled: true
-  hosts:
-    - host: ollama.markcallen.com
-      paths:
-        - path: /
-          pathType: Prefix
