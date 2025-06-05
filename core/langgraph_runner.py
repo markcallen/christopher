@@ -82,7 +82,7 @@ async def entry_node(state: ChatStateDict) -> dict[str, str]:
     # Build agent descriptions string
     agent_descriptions = "\n".join(
         [
-            f"id: {agent_id}\ndescription: {data['description']}"
+            f"{agent_id}: {data['description']}"
             for agent_id, data in AGENT_REGISTRY.items()
             if agent_id != "default"
         ]
@@ -96,8 +96,10 @@ Only return the id value of the agent that best matches the request.
 Do not include any other text in your response.
 
 Input: {state['input_text']}"""
+    logger.debug(f"Agent routing prompt:\n{prompt}")
 
     response = await ollama.generate(prompt=prompt, format=AgentResponseFormatter)
+    logger.debug(f"Agent routing response:\n{response}")
 
     try:
         if not isinstance(response, LLMResult):
