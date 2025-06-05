@@ -1,5 +1,0 @@
-ollama:
-  models:
-    pull:
-      - llama3
-      - deepseek-r1:1.5b

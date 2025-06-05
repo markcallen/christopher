@@ -4,10 +4,10 @@ Christopher is a modular multi-agent AI assistant using LangChain, LangGraph, an
 
 ## Features
 
-✅ Modular agents with auto-discovery  
-✅ LangChain-powered LLM integration (ChatGPT, Claude)  
-✅ CLI + API interfaces  
-✅ LangGraph orchestration  
+✅ Modular agents with auto-discovery
+✅ LangChain-powered LLM integration (ChatGPT, Claude)
+✅ CLI + API interfaces
+✅ LangGraph orchestration
 ✅ Dockerized + devcontainer ready
 
 ---
@@ -113,7 +113,7 @@ cp .env.example .env
 
 All pull requests and merges to main will automatically run:
 
-✅ Tests  
+✅ Tests
 ✅ Lint checks
 
 ---
@@ -144,7 +144,7 @@ These should be set in a `.env` file or passed into the environment.
 ```
 helm repo add otwld https://helm.otwld.com/
 helm repo update
-helm upgrade --install ollama otwld/ollama --namespace ollama --create-namespace --values values.yaml
+helm upgrade --install ollama otwld/ollama --namespace ollama --create-namespace --values ollama-values.yaml
 ```
 
 ```
@@ -154,7 +154,13 @@ echo "Visit http://127.0.0.1:8080 to use your application"
 kubectl --namespace ollama port-forward $POD_NAME 8080:$CONTAINER_PORT
 ```
 
+```
+helm upgrade --install redis oci://registry-1.docker.io/bitnamicharts/redis --namespace redis --create-namespace --values redis-values.yaml
+```
+
+Connect redis-cli -h redis-master.redis
+
 ## Contributing
 
-✅ Please make sure to activate your virtualenv and install pre-commit hooks before committing changes.  
+✅ Please make sure to activate your virtualenv and install pre-commit hooks before committing changes.
 ✅ Run `make lint` and `make test` to validate your changes.
