@@ -1,7 +1,7 @@
 {
   "name": "Christopher Dev",
   "service": "christopher",
-  "dockerComposeFile": "../docker-compose.yml",
+  "dockerFile": "../Dockerfile",
   "workspaceFolder": "/app",
   "customizations": {
     "vscode": {
