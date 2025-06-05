@@ -15,10 +15,10 @@ apt-get install -y --no-install-recommends \
     lsof \
     htop \
     gnupg \
-    git \
     lsb-release \
     ssh \
-    ca-certificates
+    ca-certificates \
+    build-essential
 
 update-ca-certificates
 
